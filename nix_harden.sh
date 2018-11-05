@@ -489,6 +489,9 @@ function restrict_services()
 echo "[*] Checking if you have superuser permissions."
 is_root
 
+echo "[*] Locking root."
+passwd -l root
+
 # Based on https://wiki.archlinux.org/index.php/Security#Kernel_hardening
 echo "[*] Hardening TCP/IP stack."
 harden_kernel_stack
