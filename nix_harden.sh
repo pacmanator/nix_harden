@@ -359,10 +359,10 @@ function secure_sshd()
     iptables -N IN_SSH
     iptables -R TCP 2 -p tcp --dport $ssh_port -m conntrack --ctstate NEW -j IN_SSH
     iptables -A IN_SSH -p tcp -m tcp --dport $ssh_port -m state --state NEW -m recent --set --name DEFAULT --rsource
-    iptables -A IN_SSH 3 -p tcp -m tcp --dport $ssh_port -m state --state NEW -m recent --update --seconds 90 --hitcount 3 --name DEFAULT --rsource -j IN_SSH
-    iptables -A IN_SSH 4 -p tcp -m tcp --dport $ssh_port -m state --state NEW -m recent --update --seconds 900 --hitcount 4 --name DEFAULT --rsource -j IN_SSH
-    iptables -A IN_SSH 5 -p tcp -m tcp --dport $ssh_port -m state --state NEW -m recent --update --seconds 9000 --hitcount 5 --name DEFAULT --rsource -j IN_SSH
-    iptables -A IN_SSH 6 -p tcp -m tcp --dport $ssh_port -j ACCEPT
+    iptables -A IN_SSH -p tcp -m tcp --dport $ssh_port -m state --state NEW -m recent --update --seconds 90 --hitcount 3 --name DEFAULT --rsource -j IN_SSH
+    iptables -A IN_SSH -p tcp -m tcp --dport $ssh_port -m state --state NEW -m recent --update --seconds 900 --hitcount 4 --name DEFAULT --rsource -j IN_SSH
+    iptables -A IN_SSH -p tcp -m tcp --dport $ssh_port -m state --state NEW -m recent --update --seconds 9000 --hitcount 5 --name DEFAULT --rsource -j IN_SSH
+    iptables -A IN_SSH -p tcp -m tcp --dport $ssh_port -j ACCEPT
     iptables -A IN_SSH -j LOG --log-prefix "[SSH BRUTEFORCING]" --log-level 7 --log-tcp-options --log-ip-options
     iptables -A IN_SSH -j DROP
     echo "[*] Saving rules"
@@ -372,10 +372,10 @@ function secure_sshd()
     ip6tables -N IN_SSH
     ip6tables -R TCP 2 -p tcp --dport $ssh_port -m conntrack --ctstate NEW -j IN_SSH
     ip6tables -A IN_SSH -p tcp -m tcp --dport $ssh_port -m state --state NEW -m recent --set --name DEFAULT --rsource
-    ip6tables -A IN_SSH 3 -p tcp -m tcp --dport $ssh_port -m state --state NEW -m recent --update --seconds 90 --hitcount 3 --name DEFAULT --rsource -j IN_SSH
-    ip6tables -A IN_SSH 4 -p tcp -m tcp --dport $ssh_port -m state --state NEW -m recent --update --seconds 900 --hitcount 4 --name DEFAULT --rsource -j IN_SSH
-    ip6tables -A IN_SSH 5 -p tcp -m tcp --dport $ssh_port -m state --state NEW -m recent --update --seconds 9000 --hitcount 5 --name DEFAULT --rsource -j IN_SSH
-    ip6tables -A IN_SSH 6 -p tcp -m tcp --dport $ssh_port -j ACCEPT
+    ip6tables -A IN_SSH -p tcp -m tcp --dport $ssh_port -m state --state NEW -m recent --update --seconds 90 --hitcount 3 --name DEFAULT --rsource -j IN_SSH
+    ip6tables -A IN_SSH -p tcp -m tcp --dport $ssh_port -m state --state NEW -m recent --update --seconds 900 --hitcount 4 --name DEFAULT --rsource -j IN_SSH
+    ip6tables -A IN_SSH -p tcp -m tcp --dport $ssh_port -m state --state NEW -m recent --update --seconds 9000 --hitcount 5 --name DEFAULT --rsource -j IN_SSH
+    ip6tables -A IN_SSH -p tcp -m tcp --dport $ssh_port -j ACCEPT
     ip6tables -A IN_SSH -j LOG --log-prefix "[SSH BRUTEFORCING]" --log-level 7 --log-tcp-options --log-ip-options
     ip6tables -A IN_SSH -j DROP
 
