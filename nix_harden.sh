@@ -322,7 +322,7 @@ function harden_file_permissions
 
     if [[ ! $(grep -E "/var/tmp\s{1,}none\s{1,}rw,nodev,nosuid,noexec,bind" /etc/fstab) ]]; then
 	    echo "[*] Binding /tmp mount with /var/tmp"	
-	    echo -ne "n# /tmp -> /var/tmp\n" >> /etc/fstab
+	    echo -ne "# /tmp -> /var/tmp\n" >> /etc/fstab
 	    echo -ne "/tmp\t/var/tmp\tnone\trw,nodev,nosuid,noexec,bind\t0 0\n" >> /etc/fstab;
     fi
 
